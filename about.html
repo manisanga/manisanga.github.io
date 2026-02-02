@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mani Krishna Sanga - Cybersecurity Expert</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.0/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #18bc9c;
+            --accent: #e74c3c;
+            --dark: #1a252f;
+            --light: #ecf0f1;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            padding: 2rem 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .particles-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            margin-bottom: 1.5rem;
+            border: 4px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 64px;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+        }
+        
+        .btn {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background-color: #149f8d;
+            transform: translateY(-2px);
+        }
+        
+        nav {
+            background-color: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .skills-container {
+            flex: 1;
+        }
+        
+        .skill-group {
+            margin-bottom: 2rem;
+        }
+        
+        .skill-group h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+        
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background-color: var(--secondary);
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+        
+        .experience-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary);
+            top: 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+        
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            width: 45%;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--shadow);
+            position: relative;
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            top: 20px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -60px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -60px;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-role {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-company {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-details ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+        
+        .project-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: #18bc9c;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .project-tag {
+            background-color: #f0f0f0;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        
+        .certs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .cert-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--secondary);
+        }
+        
+        .cert-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .cert-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .cert-issuer {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .chart-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        
+        .chart-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        canvas {
+            width: 100%;
+            height: 300px;
+        }
+        
+        .contact-section {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .contact-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+        
+        .skill-card-icon {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+        
+        .skill-card-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .skill-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-tool {
+            background-color: #f0f0f0;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .timeline-line {
+                left: 10px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+            }
+            
+            .timeline-content {
+                width: 85%;
+                margin-left: auto;
+            }
+            
+            .timeline-item .timeline-content::after {
+                left: -50px !important;
+            }
+            
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark);
+                padding: 1rem 0;
+                gap: 0;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.75rem 2rem;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .skill-card {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body x-data="{ 
+    navOpen: false,
+    initAnimations: function() {
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    },
+    initCharts: function() {
+        const securityDomainsChart = new Chart(
+            document.getElementById('securityDomainsChart'),
+            {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Network Security',
+                        'Cloud Security',
+                        'Digital Forensics',
+                        'Compliance',
+                        'Incident Response',
+                        'Threat Assessment',
+                        'Security Training'
+                    ],
+                    datasets: [{
+                        label: 'Expertise Level',
+                        data: [95, 90, 85, 90, 92, 88, 95],
+                        fill: true,
+                        backgroundColor: 'rgba(24, 188, 156, 0.2)',
+                        borderColor: 'rgb(24, 188, 156)',
+                        pointBackgroundColor: 'rgb(24, 188, 156)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(24, 188, 156)'
+                    }]
+                },
+                options: {
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            }
+        );
+        
+        const experienceChart = new Chart(
+            document.getElementById('experienceChart'),
+            {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        'Security Operations',
+                        'Digital Forensics',
+                        'Cloud Security',
+                        'Compliance & Audit',
+                        'Training & Mentoring'
+                    ],
+                    datasets: [{
+                        label: 'Years of Experience',
+                        data: [10, 8, 5, 7, 6],
+                        backgroundColor: [
+                            'rgb(24, 188, 156)',
+                            'rgb(52, 152, 219)',
+                            'rgb(155, 89, 182)',
+                            'rgb(52, 73, 94)',
+                            'rgb(243, 156, 18)'
+                        ]
+                    }]
+                }
+            }
+        );
+    }
+}" x-init="initAnimations(); initCharts()">
+    <!-- Particles Background -->
+    <div class="particles-bg" id="particles-js"></div>
+    
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-pic" style="background-image: url(profile.png); background-size: cover; background-position: center;">
+                    <!-- Profile image placeholder - replace with your actual image in production -->
+                </div>
+                <h1>Mani Krishna Sanga</h1>
+                <p class="title">Security Operations & Information Security Expert</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Attapur, Hyderabad</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 94418 61372</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>manikrishna.sanga@gmail.com</span>
+                    </div>
+                </div>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">MK</a>
+            <button class="mobile-toggle" @click="navOpen = !navOpen">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" :class="{'show': navOpen}" @click.outside="navOpen = false">
+                <a href="#about" @click="navOpen = false">About</a>
+                <a href="#experience" @click="navOpen = false">Experience</a>
+                <a href="#skills" @click="navOpen = false">Skills</a>
+                <a href="#projects" @click="navOpen = false">Projects</a>
+                <a href="#certifications" @click="navOpen = false">Certifications</a>
+                <a href="#contact" @click="navOpen = false">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>Highly dedicated and ethical cybersecurity professional with over a decade of experience in Security Operations, Digital Forensics, Cloud Security, and Cyber Crime Investigation. Adept at training, threat assessment, and designing secure infrastructures. Proven record of contributing to public safety and cyber resilience through hands-on involvement with law enforcement and international clients.</p>
+                    <br>
+                    <p>As a CISO and Security Expert, I've led teams through complex security challenges, performed digital forensics for law enforcement, and designed comprehensive security strategies for organizations. My passion lies in building robust security frameworks and mentoring future security professionals.</p>
+                </div>
+                <div class="skills-container fade-in">
+                    <div class="skill-group">
+                        <h3>Core Competencies</h3>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Security Operations</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Cloud Security</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Digital Forensics</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Compliance & Audit</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Security Training</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="charts-container">
+                <div class="chart-card fade-in">
+                    <h3 class="chart-title">Security Domain Expertise</h3>
+                    <canvas id="securityDomainsChart"></canvas>
+                </div>
+                <div class="chart-card fade-in">
+                    <h3 class="chart-title">Experience Distribution</h3>
+                    <canvas id="experienceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Oct 2022 – Sep 2024</div>
+                        <div class="timeline-role">Chief Information Security Officer / Expert / Auditor / SME</div>
+                        <div class="timeline-company">Da4K Technologies Pvt Ltd (Client: AOTAX Inc., USA)</div>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Conducted gap analysis and implemented ITIL improvements</li>
+                                <li>Led cyber incident response and updated security protocols</li>
+                                <li>Trained teams on compliance, data protection, and endpoint security</li>
+                                <li>Ensured database integrity and monitored for vulnerabilities</li>
+                                <li>Designed and enforced company-wide cybersecurity strategies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sep 2014 – Present</div>
+                        <div class="timeline-role">Cyber Security Engineer / Expert / Trainer</div>
+                        <div class="timeline-company">Freelancer</div>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Assisted Telangana Police in cybercrime investigations and digital forensics</li>
+                                <li>Designed city-wide command control surveillance systems</li>
+                                <li>Conducted risk assessments, system audits, and virus outbreak responses</li>
+                                <li>Developed security awareness programs and emergency response protocols</li>
+                                <li>Authored security documentation and handled vendor coordination</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jan 2012 – July 2014</div>
+                        <div class="timeline-role">Security Researcher & Trainer</div>
+                        <div class="timeline-company">Hackademy</div>
+                        <div class="timeline-details">
+                            <ul>
+                                <li>Delivered lectures on ethical hacking and cybersecurity</li>
+                                <li>Designed cybersecurity curriculum and labs for hands-on training</li>
+                                <li>Moderated discussions and promoted awareness on emerging threats</li>
+                                <li>Supervised lab exercises and mentored students on real-time analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <div class="skill-card-header">
+                        <div class="skill-card-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3 class="skill-card-title">Network Security</h3>
+                    </div>
+                    <p>Expert in network security analysis, monitoring, and defensive techniques.</p>
+                    <div class="skill-tools">
+                        <span class="skill-tool">Wireshark</span>
+                        <span class="skill-tool">Nessus Pro</span>
+                        <span class="skill-tool">Splunk</span>
+                        <span class="skill-tool">Metasploit</span>
+                        <span class="skill-tool">Snort</span>
+                        <span class="skill-tool">Kali Linux</span>
+                        <span class="skill-tool">TrendMicro</span>
+                        <span class="skill-tool">Sophos</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card fade-in">
+                    <div class="skill-card-header">
+                        <div class="skill-card-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="skill-card-title">Web/App Security</h3>
+                    </div>
+                    <p>Specialized in web application security testing and vulnerability assessment.</p>
+                    <div class="skill-tools">
+                        <span class="skill-tool">Burp Suite</span>
+                        <span class="skill-tool">ZAP</span>
+                        <span class="skill-tool">OWASP</span>
+                        <span class="skill-tool">WPSCAN</span>
+                        <span class="skill-tool">SQLMap</span>
+                        <span class="skill-tool">Postman</span>
+                        <span class="skill-tool">W3AF</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card fade-in">
+                    <div class="skill-card-header">
+                        <div class="skill-card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="skill-card-title">Vulnerability Analysis</h3>
+                    </div>
+                    <p>Proficient in identifying and assessing security vulnerabilities across systems.</p>
+                    <div class="skill-tools">
+                        <span class="skill-tool">Nmap</span>
+                        <span class="skill-tool">Nikto</span>
+                        <span class="skill-tool">OpenVAS</span>
+                        <span class="skill-tool">SolarWinds</span>
+                        <span class="skill-tool">Acunetix</span>
+                        <span class="skill-tool">Pentest Tools</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card fade-in">
+                    <div class="skill-card-header">
+                        <div class="skill-card-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="skill-card-title">Digital Forensics</h3>
+                    </div>
+                    <p>Expert in digital evidence collection, analysis, and investigation techniques.</p>
+                    <div class="skill-tools">
+                        <span class="skill-tool">Autopsy</span>
+                        <span class="skill-tool">FTK</span>
+                        <span class="skill-tool">Maltego</span>
+                        <span class="skill-tool">Recon-ng</span>
+                        <span class="skill-tool">Ophcrack</span>
+                        <span class="skill-tool">Patator</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card fade-in">
+                    <div class="skill-card-header">
+                        <div class="skill-card-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="skill-card-title">Cloud Security</h3>
+                    </div>
+                    <p>Specialized in securing cloud environments and implementing best practices.</p>
+                    <div class="skill-tools">
+                        <span class="skill-tool">Azure Security</span>
+                        <span class="skill-tool">Microsoft 365</span>
+                        <span class="skill-tool">Cloud App Security</span>
+                        <span class="skill-tool">Azure Defender</span>
+                        <span class="skill-tool">Sentinel</span>
+                        <span class="skill-tool">Intune</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card fade-in">
+                    <div class="skill-card-header">
+                        <div class="skill-card-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3 class="skill-card-title">Compliance & Standards</h3>
+                    </div>
+                    <p>Expert knowledge in regulatory frameworks and security compliance standards.</p>
+                    <div class="skill-tools">
+                        <span class="skill-tool">NIST</span>
+                        <span class="skill-tool">GDPR</span>
+                        <span class="skill-tool">PCI-DSS</span>
+                        <span class="skill-tool">SOX</span>
+                        <span class="skill-tool">CIS Controls</span>
+                        <span class="skill-tool">Essential Eight</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" style="background-color: #18bc9c;">
+        <div class="container">
+            <h2 class="section-title">Key Projects</h2>
+            <div class="project-container">
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Azure Security Architecture (ChillIT Inc.)</h3>
+                        <p>Designed comprehensive security architecture for ChillIT Inc. including:</p>
+                        <ul style="list-style-type: disc; padding-left: 20px; margin: 10px 0;">
+                            <li>Configured Azure/O365 tenants with secure onboarding protocols</li>
+                            <li>Integrated third-party apps with Microsoft Cloud App Security for DLP</li>
+                            <li>Implemented passwordless authentication and conditional access policies</li>
+                            <li>Deployed Azure Defender, Disk Encryption, and Sentinel integrations</li>
+                            <li>Applied security compliance frameworks: NIST, GDPR, CIS</li>
+                            <li>Deployed Microsoft Endpoint Manager solutions (InTune, MDM, MAM)</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="project-tag">Azure</span>
+                            <span class="project-tag">O365</span>
+                            <span class="project-tag">Cloud Security</span>
+                            <span class="project-tag">DLP</span>
+                        </div>
+                        <a href="#" class="btn">Case Study</a>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Cybercrime Investigation System</h3>
+                        <p>Assisted Telangana Police in developing digital forensics capabilities:</p>
+                        <ul style="list-style-type: disc; padding-left: 20px; margin: 10px 0;">
+                            <li>Designed forensic analysis workflows for cybercrime investigations</li>
+                            <li>Implemented digital evidence collection procedures and chain of custody protocols</li>
+                            <li>Trained law enforcement personnel on digital forensics techniques</li>
+                            <li>Provided expert testimony and analysis for cyber cases</li>
+                            <li>Developed standard operating procedures for handling digital evidence</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="project-tag">Digital Forensics</span>
+                            <span class="project-tag">Law Enforcement</span>
+                            <span class="project-tag">Cybercrime</span>
+                        </div>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">City-wide Surveillance System</h3>
+                        <p>Designed and implemented security infrastructure for urban surveillance:</p>
+                        <ul style="list-style-type: disc; padding-left: 20px; margin: 10px 0;">
+                            <li>Architected command control center with secure communications</li>
+                            <li>Implemented encryption and access controls for sensitive video data</li>
+                            <li>Designed alert systems and incident response protocols</li>
+                            <li>Ensured compliance with privacy regulations and data protection standards</li>
+                            <li>Created secure backup and archival systems for surveillance footage</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="project-tag">Physical Security</span>
+                            <span class="project-tag">Surveillance</span>
+                            <span class="project-tag">Command Center</span>
+                        </div>
+                        <a href="#" class="btn">Details</a>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-virus-slash"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Enterprise Security Operations</h3>
+                        <p>Led cyber incident response and security protocol implementation:</p>
+                        <ul style="list-style-type: disc; padding-left: 20px; margin: 10px 0;">
+                            <li>Conducted gap analysis and implemented ITIL improvements</li>
+                            <li>Coordinated incident response for multiple security events</li>
+                            <li>Developed and enforced company-wide cybersecurity strategies</li>
+                            <li>Implemented continuous monitoring and vulnerability scanning</li>
+                            <li>Created security awareness training programs for employees</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="project-tag">Incident Response</span>
+                            <span class="project-tag">SecOps</span>
+                            <span class="project-tag">Vulnerability Management</span>
+                        </div>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certs-container">
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <h3 class="cert-name">Azure Security Engineer Associate (AZ-500)</h3>
+                    <p class="cert-issuer">Microsoft</p>
+                    <p>Validated expertise in implementing security controls and threat protection in Azure environments.</p>
+                </div>
+                
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="cert-name">Certified Information Security Systems Auditor (CISSA)</h3>
+                    <p class="cert-issuer">Mile2</p>
+                    <p>Professional qualification in information security systems auditing standards and practices.</p>
+                </div>
+                
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="cert-name">Certified Information Security Expert (CISE)</h3>
+                    <p class="cert-issuer">Innobuzz</p>
+                    <p>Advanced certification recognizing comprehensive information security expertise.</p>
+                </div>
+                
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3 class="cert-name">Certified Ethical Hacker (CEH)</h3>
+                    <p class="cert-issuer">EC-Council</p>
+                    <p>Professional certification in ethical hacking methodology and techniques.</p>
+                </div>
+                
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="cert-name">Certified Hacking Forensic Investigator (CHFI)</h3>
+                    <p class="cert-issuer">EC-Council</p>
+                    <p>Specialized certification in computer forensics and digital evidence collection.</p>
+                </div>
+                
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="cert-name">Cyber Crime Intervention Officer (CCIO)</h3>
+                    <p class="cert-issuer">ISAC</p>
+                    <p>Certification focused on cybercrime investigation and intervention techniques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-methods">
+                <div class="contact-method fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="contact-title">Email</h3>
+                    <p>manikrishna.sanga@gmail.com</p>
+                </div>
+                
+                <div class="contact-method fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="contact-title">Phone</h3>
+                    <p>+91 94418 61372</p>
+                </div>
+                
+                <div class="contact-method fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="contact-title">Location</h3>
+                    <p>Attapur, Hyderabad, Telangana</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2025 Mani Krishna Sanga. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particles.js config
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
